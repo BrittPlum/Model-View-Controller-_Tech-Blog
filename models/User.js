@@ -1,12 +1,11 @@
-const { Model, DataTypes } = require('sequilize');
-
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+sequelize = require('../config/connection')
 class User extends Model {
     //User inherits everything that model implements 
-
-    // Add additional User specific methods in here
-    /*
-    ............
-    */
+checkPassword(loginPw){
+  return bcrypt.compareSync(loginPw, this.password);
+}
 }
 
 User.init(
